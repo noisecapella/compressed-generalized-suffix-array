@@ -40,26 +40,28 @@ public class TestSuffixArray {
 		System.out.println("Reading test data...");
 		try
 		{
-			InputStream in = new FileInputStream(args[0]); 
+			InputStream in;
 			try
 			{
-				GZIPInputStream gzipIn = new GZIPInputStream(in);
+				GZIPInputStream gzipIn = new GZIPInputStream(new FileInputStream(args[0]));
 				in = gzipIn;
 			}
-			finally
-			{
-				// TODO: what would crash GZIPInputStream?
+			catch (IOException e) {
+				// assuming it's not in gzip format, continue
+				in = new FileInputStream(args[0]);
 			}
+
 			StringBuilder builder = new StringBuilder();
 			byte[] buffer = new byte[4096];
 			int len;
 			while ((len = in.read(buffer, 0, buffer.length)) > 0) {
-				builder.append(new String(buffer));
+				builder.append(new String(buffer, 0, len));
 			}
 			
-			System.out.println("Splitting into lines...");
+			System.out.println("Builder is length " + builder.length() + ". Splitting into lines...");
 			String s = builder.toString();
 			String[] lines = s.split("\n");
+			System.out.println("Number of lines: " + lines.length);
 			ArrayList<Tuple> tuples = new ArrayList<Tuple>();
 			int i = 0;
 			for (String line : lines) {
@@ -82,6 +84,7 @@ public class TestSuffixArray {
 				Tuple tuple = (Tuple)result;
 				System.out.println("Line: " + tuple.getLineNum() + ", " + tuple.getString());
 			}
+			System.out.println("Done!");
 		}
 		catch (IOException e) {
 			e.printStackTrace();
