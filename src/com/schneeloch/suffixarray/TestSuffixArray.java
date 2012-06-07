@@ -70,6 +70,7 @@ public class TestSuffixArray {
 				i++;
 			}
 			
+			System.out.println("Memory used before creating suffix array: " + getMemory());
 			System.out.println("Creating suffix array from tuples...");
 			SuffixArray suffixArray = new SuffixArray(true);
 			for (Tuple tuple : tuples) {
@@ -78,17 +79,27 @@ public class TestSuffixArray {
 			System.out.println("Suffix array is size " + suffixArray.size() + ". Sorting suffix array...");
 			suffixArray.sort();
 			
-			String key = "whale";
+			System.out.println("Memory used after suffix array is sorted: " + getMemory());
+			
+			String key = "leviathan";
 			System.out.println("Searching for " + key + "...");
 			for (ObjectWithString result : suffixArray.search(key)) {
 				Tuple tuple = (Tuple)result;
 				System.out.println("Line: " + tuple.getLineNum() + ", " + tuple.getString());
 			}
+			System.out.println("Ending memory: " + getMemory());
+
 			System.out.println("Done!");
 		}
 		catch (IOException e) {
 			e.printStackTrace();
 		}
 
+	}
+
+    private long getMemory() {
+    	Runtime runtime = Runtime.getRuntime();
+    	runtime.gc();
+    	return runtime.totalMemory() - runtime.freeMemory();
 	}
 }
