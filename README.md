@@ -5,4 +5,6 @@ This is meant to be a memory-efficient generalized suffix array. It's designed t
 
 This code is provided as is, without any warranty. See LICENSE for the license specifics, but it's just a standard 3 clause BSD license.
 
-Some classes come from colt, a library used for high performance data structures, and are licensed accordingly. I copied these files into my repository since the amount of code I'm using is relatively small compared to the size of the complete jar.
+Some classes come from colt, a library used for high performance data structures, and are licensed accordingly. I trimmed out unused functions but otherwise it's unaltered. I copied these files into my repository since the amount of code I'm using is relatively small compared to the size of the complete jar.
+
+Pull requests and bug issues are appreciated :)
