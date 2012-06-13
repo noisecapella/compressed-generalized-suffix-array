@@ -38,6 +38,13 @@ public class SuffixArray implements IntComparator {
 	}
     
     /**
+     * In case we already have the result from sorting
+     */
+    public void setIndexes(int[] indexes) {
+    	this.indexes = indexes;
+    }
+    
+    /**
      * must be done right after adding, before anything else. If not done,
      * this may be triggered first by methods which use indexes
      */
