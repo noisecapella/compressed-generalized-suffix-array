@@ -72,7 +72,7 @@ public class TestSuffixArray {
 			
 			System.out.println("Memory used before creating suffix array: " + getMemory());
 			System.out.println("Creating suffix array from tuples...");
-			SuffixArray suffixArray = new SuffixArray(true);
+			SuffixArray<Tuple> suffixArray = new SuffixArray<Tuple>(true);
 			for (Tuple tuple : tuples) {
 				suffixArray.add(tuple);
 			}
@@ -83,7 +83,7 @@ public class TestSuffixArray {
 			
 			String key = "leviathan";
 			System.out.println("Searching for " + key + "...");
-			for (ObjectWithString result : suffixArray.search(key)) {
+			for (Tuple result : suffixArray.search(key)) {
 				Tuple tuple = (Tuple)result;
 				System.out.println("Line: " + tuple.getLineNum() + ", " + tuple.getString());
 			}
