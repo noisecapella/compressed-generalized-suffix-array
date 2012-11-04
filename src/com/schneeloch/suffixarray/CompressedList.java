@@ -94,4 +94,13 @@ public class CompressedList<T> {
 		int compressedIndex = getCompressedIndex(i);
 		return indexes.get(compressedIndex);
 	}
+	
+	public void clear() {
+		count = 0;
+		lastResult = -1;
+		lastQuery = -1;
+		
+		items.clear();
+		indexes.clear();
+	}
 }
